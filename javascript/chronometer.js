@@ -5,7 +5,10 @@ class Chronometer {
   }
   start(callback) {
     this.intervalId = setInterval(() => {
-     return this.currentTime += 1;
+     this.currentTime += 1;
+      if(callback){
+        callback()
+      }
     }, 1000)
   }
   getMinutes() {
@@ -16,6 +19,12 @@ class Chronometer {
     const totalSeconds = this.currentTime % 60
     return totalSeconds;
   }
+
+  getMilliSeconds(){
+    const totalMilliSeconds = totalSeconds * 1000
+    return totalMilliSeconds;
+  }
+
   computeTwoDigitNumber(value) {
     if (value.toString().length === 1){
       return `0${value}`
